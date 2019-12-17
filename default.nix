@@ -12,23 +12,29 @@ mkYarnPackage rec {
   packageJSON = ./package.json;
   yarnLock = ./yarn.lock;
 
-  nativeBuildInputs = [purescript];
+  nativeBuildInputs = [ purescript ];
 
   postBuild = ''
     ${removeHashBang spagoPkgs.installSpagoStyle} # == spago2nix install
     ${removeHashBang spagoPkgs.buildSpagoStyle}   # == spago2nix build
     ${removeHashBang spagoPkgs.buildFromNixStore} # == spago2nix build
+
     '';
+    # TODO: try to compile here? getting a ModuleNotFound Error
+    # mkdir -p $out
+    # ${purescript}/bin/purs compile "$src/**/*.purs"
+    # mv output $out
 
   # fails with:
   # purs bundle: No input files.
   # [error] Bundle failed.
   postFixup = ''
-      cd $src
-      ${spago}/bin/spago bundle-app --no-install --no-build
-        --no-build --main Main --to $out/dist/app.js
-      parcel assets/*.html --out-dir $out/dist/
+    cd $src
+    ${spago}/bin/spago bundle-app --no-install \
+      --no-build --main Example.Main --to $out/dist/app.js
+    parcel assets/*.html --out-dir $out/dist/
   '';
+
 
   meta = with stdenv.lib; {
     description = "Example for building Purescript Halogen app with Nix.";
