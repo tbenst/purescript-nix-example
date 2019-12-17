@@ -5,6 +5,7 @@ let
   removeHashBang = drv: drv.overrideAttrs (oldAttrs: {
     buildCommand = builtins.replaceStrings ["#!/usr/bin/env"] [""] oldAttrs.buildCommand;
   });
+
 in
 mkYarnPackage rec {
   name = "purescript-nix-example";
@@ -12,27 +13,24 @@ mkYarnPackage rec {
   packageJSON = ./package.json;
   yarnLock = ./yarn.lock;
 
-  nativeBuildInputs = [ purescript ];
+  nativeBuildInputs = [ purescript nodejs-12_x ];
 
   postBuild = ''
-    ${removeHashBang spagoPkgs.installSpagoStyle} # == spago2nix install
-    ${removeHashBang spagoPkgs.buildSpagoStyle}   # == spago2nix build
-    ${removeHashBang spagoPkgs.buildFromNixStore} # == spago2nix build
-
+    ${purescript}/bin/purs compile "$src/**/*.purs" ${builtins.toString
+      (builtins.map
+        (x: ''"${x.outPath}/src/**/*.purs"'')
+        (builtins.attrValues spagoPkgs.inputs))}
+    mkdir -p $out
+    cp -r output $out/output
     '';
-    # TODO: try to compile here? getting a ModuleNotFound Error
-    # mkdir -p $out
-    # ${purescript}/bin/purs compile "$src/**/*.purs"
-    # mv output $out
 
-  # fails with:
-  # purs bundle: No input files.
-  # [error] Bundle failed.
   postFixup = ''
-    cd $src
+    mkdir -p $out/dist
+    echo ${spago}/bin/spago bundle-app --no-install \
+      --no-build --main Example.Main --to $out/dist/app.js
     ${spago}/bin/spago bundle-app --no-install \
       --no-build --main Example.Main --to $out/dist/app.js
-    parcel assets/*.html --out-dir $out/dist/
+    ${nodejs-12_x}/bin/node node_modules/.bin/parcel build assets/*.html --out-dir $out/dist/
   '';
 
 
