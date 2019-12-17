@@ -13,3 +13,4 @@ yarn-debug.log*
 yarn-error.log*
 /dist
 /.spago2nix
+result
