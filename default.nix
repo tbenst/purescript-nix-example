@@ -22,8 +22,6 @@ mkYarnPackage rec {
 
   postFixup = ''
     mkdir -p $out/dist
-    echo ${spago}/bin/spago bundle-app --no-install \
-      --no-build --main Example.Main --to $out/dist/app.js
     ${spago}/bin/spago bundle-app --no-install \
       --no-build --main Example.Main --to $out/dist/app.js
     ${nodejs-12_x}/bin/node node_modules/.bin/parcel build assets/*.html --out-dir $out/dist/
