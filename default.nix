@@ -16,15 +16,17 @@ mkYarnPackage rec {
       (builtins.map
         (x: ''"${x.outPath}/src/**/*.purs"'')
         (builtins.attrValues spagoPkgs.inputs))}
-    mkdir -p $out
-    cp -r output $out/output
+    cp -r $src/assets ./
     '';
 
   postFixup = ''
-    mkdir -p $out/dist
     ${spago}/bin/spago bundle-app --no-install \
-      --no-build --main Example.Main --to $out/dist/app.js
-    ${nodejs-12_x}/bin/node node_modules/.bin/parcel build assets/*.html --out-dir $out/dist/
+      --no-build --main Example.Main --to dist/app.js
+    mkdir -p $out/dist
+    cp -r dist $out/
+    ln -s $out/libexec/${name}/node_modules .
+    ${nodejs-12_x}/bin/node node_modules/.bin/parcel \
+      build assets/*.html --out-dir $out/dist/
   '';
 
 
