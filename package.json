@@ -2,7 +2,7 @@
   "name": "purescript-nix-example",
   "version": "1.0.0",
   "scripts": {
-    "bootstrap-nix": "yarn add --dev purescript spago parcel-bundler && yarn spago init && yarn spago install halogen behaviors drawing && yarn2nix > yarn.nix && spago2nix generate",
+    "bootstrap-nix": "yarn add --dev purescript spago parcel-bundler && yarn spago init && yarn spago install halogen && yarn2nix > yarn.nix && spago2nix generate",
     "full-clean": "rm -rf node_modules output .spago dist/* *.lock spago-packages.nix yarn.nix .spago2nix .cache spago.dhall packages.dhall",
     "clean": "rm -rf output .spago dist/*",
     "build": "spago build",
