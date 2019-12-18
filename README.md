@@ -13,7 +13,7 @@ This repository follows best-practices for Purescript as discussed by the commun
 ```
 Thanks to the declarative nature of nix, it's easy to build this using the same exact version of dependencies that were tested. Simply add the flag `-I nixpkgs=https://github.com/NixOS/nixpkgs/archive/d3f928282c0989232e425d26f0302120a8c7218b.tar.gz` to `nix-build` and `nix-shell`. This package should build as long as the dependencies are hosted online.
 
-## serving http
+## Serving http
 ```
 > nix-shell shell.nix
 $ yarn install
