@@ -2,10 +2,6 @@ with import <nixpkgs> {};
 
 let 
   spagoPkgs = import ./spago-packages.nix { inherit pkgs; };
-  removeHashBang = drv: drv.overrideAttrs (oldAttrs: {
-    buildCommand = builtins.replaceStrings ["#!/usr/bin/env"] [""] oldAttrs.buildCommand;
-  });
-
 in
 mkYarnPackage rec {
   name = "purescript-nix-example";
