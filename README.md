@@ -1,9 +1,7 @@
 # Purescript-nix-example
 This repo builds the [basic example](https://github.com/slamdata/purescript-halogen/tree/master/examples/basic) from [Halogen](https://github.com/slamdata/purescript-halogen), a type-safe UI library for Purescript, using nix. Several helper tools are used, namely [yarn2nix](https://github.com/moretea/yarn2nix) and [spago2nix](https://github.com/justinwoo/spago2nix).
 
-This repository follows best-practices as described in this [discourse thread](https://discourse.purescript.org/t/recommended-tooling-for-purescript-applications-in-2019/948): we use [Yarn](https://yarnpkg.com/lang/en/) for Javascript packages, [Spago](https://github.com/spacchetti/spago) for Purescript packages, and [Parcel](https://parceljs.org/) for bundling.
-
-Thanks to the declarative nature of nix, this package should be work as long as the dependencies are hosted online.
+This repository follows best-practices for Purescript as discussed by the community in this [discourse thread](https://discourse.purescript.org/t/recommended-tooling-for-purescript-applications-in-2019/948): we use [Yarn](https://yarnpkg.com/lang/en/) for Javascript packages, [Spago](https://github.com/spacchetti/spago) for Purescript packages, and [Parcel](https://parceljs.org/) for bundling.
 
 ## Building this repo with Nix
 ```
@@ -13,6 +11,8 @@ Thanks to the declarative nature of nix, this package should be work as long as 
 > nix-shell shell.nix
 $ yarn http-server result/dist/
 ```
+Thanks to the declarative nature of nix, it's easy to build this using the same exact version of dependencies that were tested. Simply add the flag `-I nixpkgs=https://github.com/NixOS/nixpkgs/archive/d3f928282c0989232e425d26f0302120a8c7218b.tar.gz` to `nix-build` and `nix-shell`. This package should build as long as the dependencies are hosted online.
+
 
 ## Bootstrapping default.nix
 ```
