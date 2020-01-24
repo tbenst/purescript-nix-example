@@ -16,5 +16,6 @@ stdenv.mkDerivation {
     yarn
     yarn2nix
     spago2nix
+    spago
   ];
 }

@@ -67,11 +67,11 @@ let
 
     "console" = pkgs.stdenv.mkDerivation {
         name = "console";
-        version = "v4.2.0";
+        version = "v4.3.0";
         src = pkgs.fetchgit {
           url = "https://github.com/purescript/purescript-console.git";
-          rev = "add2bdb8a4af2213d993b728805f1f2a5e76deb8";
-          sha256 = "1b2nykdq1dzaqyra5pi8cvvz4dsbbkg57a2c88yi931ynm19nnw6";
+          rev = "8224f6e9af1dba922139038edc49e55f20c1fbd4";
+          sha256 = "0saaacddyhb4rdjy6v0hfwydwzcgy0ph5syxs4zb6c7wiyb4p9ll";
         };
         phases = "installPhase";
         installPhase = "ln -s $src $out";
@@ -715,11 +715,11 @@ let
 
     "typelevel-prelude" = pkgs.stdenv.mkDerivation {
         name = "typelevel-prelude";
-        version = "v5.0.1";
+        version = "v5.0.2";
         src = pkgs.fetchgit {
           url = "https://github.com/purescript/purescript-typelevel-prelude.git";
-          rev = "6792c6c2f1c770600d9a8beebde5528e936781eb";
-          sha256 = "02jx3yssd7f5q0ibdarylxr7c7s4qhavjqbi4vrnx3xyjr3q3y56";
+          rev = "9f8788ba16ddda8f70e54e5228422348c13c817c";
+          sha256 = "1kp1b35y8wzin9m5lfyp239nclq703xz2b4373x3075xfp6qdcwf";
         };
         phases = "installPhase";
         installPhase = "ln -s $src $out";
@@ -799,11 +799,11 @@ let
 
     "web-file" = pkgs.stdenv.mkDerivation {
         name = "web-file";
-        version = "v2.2.0";
+        version = "v2.3.0";
         src = pkgs.fetchgit {
           url = "https://github.com/purescript-web/purescript-web-file.git";
-          rev = "2c2df4e1e21936fd64c27474b024aa531050831b";
-          sha256 = "0kf26rpkg5jwyh7gl7bvcfs6r7h76d8yycpnay247pqx9m14490p";
+          rev = "32fa296ff8103a72d52fc900b195f2ee05dc5627";
+          sha256 = "1pn3cp8kkvxlg0vx3m53i83n8c92agpxd7dj96ma3bnyskd17fxv";
         };
         phases = "installPhase";
         installPhase = "ln -s $src $out";
