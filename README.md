@@ -3,7 +3,7 @@ This repo builds the [basic example](https://github.com/slamdata/purescript-halo
 
 This repository follows best-practices for Purescript as discussed by the community in this [discourse thread](https://discourse.purescript.org/t/recommended-tooling-for-purescript-applications-in-2019/948): we use [Yarn](https://yarnpkg.com/lang/en/) for Javascript packages, [Spago](https://github.com/spacchetti/spago) for Purescript packages, and [Parcel](https://parceljs.org/) for bundling.
 
- Two helper tools are used: [yarn2nix](https://github.com/moretea/yarn2nix) and [spago2nix](https://github.com/justinwoo/spago2nix).
+ Two helper tools are used: [yarn2nix](https://github.com/moretea/yarn2nix) and [spago2nix](https://github.com/justinwoo/spago2nix). Instructions have been tested on NixOS and Ubuntu.
 
 ## Building this repo with Nix
 ```
@@ -50,7 +50,7 @@ Alternatively, if you'd prefer to start
 from a clean git history, all you need is `shell.nix` and `default.nix` to get started:
 ```
 > nix-shell shell.nix
-$ yarn add --dev purescript spago parcel-bundler
+$ yarn add --dev parcel-bundler
 ```
 Now add a "name" and "version" field to `package.json` or else later steps will fail.
 
