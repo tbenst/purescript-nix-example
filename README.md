@@ -57,8 +57,8 @@ Now add a "name" and "version" field to `package.json` or else later steps will 
 ```
 > nix-shell shell.nix
 $ yarn add http-server
-$ yarn spago init
-$ yarn spago install halogen
+$ spago init
+$ spago install halogen
 $ yarn2nix > yarn.nix
 $ spago2nix generate
 ```
