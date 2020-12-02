@@ -9,13 +9,13 @@ This repository follows best-practices for Purescript as discussed by the commun
 ```
 > git clone https://github.com/tbenst/purescript-nix-example
 > cd purescript-nix-example
-> nix-build
+> nix-build -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/d3f928282c0989232e425d26f0302120a8c7218b.tar.gz
 ```
 Thanks to the declarative nature of nix, it's easy to build this using the same exact version of dependencies that were tested. Simply add the flag `-I nixpkgs=https://github.com/NixOS/nixpkgs/archive/d3f928282c0989232e425d26f0302120a8c7218b.tar.gz` to `nix-build` and `nix-shell`. This package should build as long as the dependencies are hosted online.
 
 ## Serving http
 ```
-> nix-shell shell.nix
+> nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/d3f928282c0989232e425d26f0302120a8c7218b.tar.gz shell.nix
 $ yarn install
 $ yarn http-server result/dist/
 ```
@@ -23,7 +23,7 @@ Now open a browser, and you should see a single button that toggles on or off.
 To serve a version built in `nix-shell`, replace the second line with `http-server dist` as result is a symlink to nix-store created by `nix-build`.
 
 ## Hot reloading
-Run the following commands in separate terminals using `nix-shell shell.nix`.
+Run the following commands in separate terminals using `nix-shell shell.nix` (using `-I` flag if appropriate).
 Make sure you `yarn install` first.
 ```
 yarn watch
